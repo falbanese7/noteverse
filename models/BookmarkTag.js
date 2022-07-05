@@ -11,29 +11,22 @@ BookmarkTag.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     bookmark_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'bookmark',
-        key: 'id'
-      }
+        key: 'id',
+      },
     },
     tag_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'tag',
-        key: 'id'
-      }
+        key: 'id',
+      },
     },
-    tag_title: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'tag',
-        key: 'tag_name'
-      }
-    }
   },
   {
     sequelize,
