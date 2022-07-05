@@ -15,7 +15,7 @@ Bookmark.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    URL: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

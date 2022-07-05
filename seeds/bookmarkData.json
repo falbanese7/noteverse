@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Google",
+    "URL": "https://google.com",
+    "user_id": "1"
+  },
+  {
+    "title": "YouTube",
+    "URL": "https://youtube.com",
+    "user_id": "1"
+  },
+  {
+    "title": "Twitch",
+    "URL": "https://twitch.com",
+    "user_id": "1"
+  },
+  {
+    "title": "GitHub",
+    "URL": "https://github.com",
+    "user_id": "1"
+  }
+]
