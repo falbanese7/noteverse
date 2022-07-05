@@ -26,6 +26,13 @@ BookmarkTag.init(
         model: 'tag',
         key: 'id'
       }
+    },
+    tag_title: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'tag',
+        key: 'tag_name'
+      }
     }
   },
   {
