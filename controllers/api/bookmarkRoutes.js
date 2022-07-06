@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Bookmark, User, BookmarkTag } = require('../../models');
+const { Bookmark, User, Tag, BookmarkTag } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -9,14 +9,8 @@ router.get('/', async (req, res) => {
       order: [['created_at', 'ASC']],
       include: [
         {
-          model: BookmarkTag,
-          attributes: [
-            'id',
-            'bookmark_id',
-            'tag_id',
-            'tag_title',
-          ],
-          include: { model: User, attributes: ['username'] },
+          model: Tag,
+          attributes: ['id', 'tag_name'],
         },
         { model: User, attributes: ['username'] },
       ],
@@ -36,14 +30,8 @@ router.get('/:id', async (req, res) => {
       order: [['created_at', 'ASC']],
       include: [
         {
-          model: BookmarkTag,
-          attributes: [
-            'id',
-            'bookmark_id',
-            'tag_id',
-            'tag_title',
-          ],
-          include: { model: User, attributes: ['username'] },
+          model: Tag,
+          attributes: ['id', 'tag_name'],
         },
         { model: User, attributes: ['username'] },
       ],
@@ -59,16 +47,34 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', withAuth, async (req, res) => {
-  try {
-    const bookmarkData = await Bookmark.create({
-      ...req.body,
-      user_id: req.session.user_id
+router.post('/', withAuth, (req, res) => {
+  // try {
+  //   const bookmarkData = await Bookmark.create({
+  //     ...req.body,
+  //     user_id: req.session.user_id,
+  //   });
+  //   res.status(201).json(bookmarkData);
+  // } catch (e) {
+  //   res.status(400).json(e);
+  // }
+  Bookmark.create(req.body)
+    .then((bookmark) => {
+      if (req.body.tagIds.length) {
+        const bookmarkTagIdArr = req.body.tagIds.map((tag_id) => {
+          return {
+            bookmark_id: bookmark.id,
+            tag_id,
+          };
+        });
+        return BookmarkTag.bulkCreate(bookmarkTagIdArr);
+      }
+      res.status(200).json(bookmark);
+    })
+    .then((bookmarkTagIds) => res.status(200).json(bookmarkTagIds))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
     });
-    res.status(201).json(bookmarkData);
-  } catch (e) {
-    res.status(400).json(e);
-  }
 });
 
 router.put('/:id', withAuth, async (req, res) => {
@@ -76,13 +82,13 @@ router.put('/:id', withAuth, async (req, res) => {
     const updatedBookmark = await Bookmark.update(
       {
         title: req.body.title,
-        URL: req.body.URL
+        URL: req.body.URL,
       },
       {
         where: {
           id: req.params.id,
         },
-      },
+      }
     );
     if (!updatedBookmark) {
       res.status(404).json({ message: 'No matching record found!' });

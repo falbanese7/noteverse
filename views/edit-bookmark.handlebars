@@ -1,0 +1,15 @@
+ <a class="back-to-dash" href="/dashboard"> &larr; Back to dashboard</a>
+<div class="card">
+    <h3 class="card-header">Edit Bookmark</h3>
+    <form class="card-body edit-bookmark-form">
+        <label for="bookmark-title" class="form-label">Title</label>
+        <input name="bookmark-title" type="text" value="{{bookmark.title}}" class="input-group mb-3" />
+        <label class="form-label" for="URL">URL</label>
+        <input name="URL" type="text" value="{{bookmark.URL}}" class="input-group mb-3" />
+        <button type="submit" class="btn btn-success">Update Bookmark</button>
+        <button type="button" class="delete-bookmark-btn btn btn-danger">Delete Bookmark</button>
+    </form>
+</div>
+
+<script src="/js/edit-bookmark.js"></script>
+<script src="/js/delete-bookmark.js"></script>

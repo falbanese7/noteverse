@@ -35,7 +35,6 @@ router.post('/', withAuth, async (req, res) => {
     try {
       const tagData = await Tag.create({
         ...req.body,
-        user_id: req.session.user_id
       });
       console.log(tagData);
       res.status(201).json(tagData);

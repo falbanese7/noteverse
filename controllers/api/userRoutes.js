@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Bookmark, BookmarkTag} = require('../../models');
+const { User, Bookmark, Tag } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
@@ -16,12 +16,14 @@ router.get('/:id', async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, {
       include: [
-        { model: Bookmark,
+        {
+          model: Bookmark,
           attributes: ['id', 'title', 'URL'],
-          include:  {
-            model: BookmarkTag,
-            attributes: ['id', 'tag_title']
-          }},
+          include: {
+            model: Tag,
+            attributes: ['id', 'tag_name'],
+          },
+        },
       ],
     });
 
@@ -41,7 +43,7 @@ router.post('/', async (req, res) => {
     const userData = await User.create({
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     });
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -56,7 +58,9 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { username: req.body.username } });
+    const userData = await User.findOne({
+      where: { username: req.body.username },
+    });
 
     if (!userData) {
       res
@@ -81,7 +85,6 @@ router.post('/login', async (req, res) => {
 
       res.json({ user: userData, message: 'You are now logged in!' });
     });
-
   } catch (err) {
     res.status(400).json(err);
   }

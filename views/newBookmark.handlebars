@@ -1,0 +1,23 @@
+<article class="d-flex flex-column text-center">
+    <a class="back-to-dash" href="/dashboard"> &larr; Back to dashboard</a>
+  <h2 class="title">Create new bookmark</h2><hr>
+
+  <form class="new-bookmark-form">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+        <input type="text" name="bookmark-title" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">URL</span>
+        <textarea type="text" name="URL" class="form-control"></textarea>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Tags</span>
+        <textarea type="text" name="tag-body" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Bookmark</button>
+  </form>
+</article>
+
+<script src="/js/addBookmark.js"></script>
+<script src="/js/tags.js"></script>

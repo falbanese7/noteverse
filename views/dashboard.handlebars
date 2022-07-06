@@ -1,0 +1,50 @@
+{{#if logged_in}}
+<div class="row text-center">
+    <div class="col-12">
+        <h2 class="title p-4">Your bookmarks</h2><hr>
+    </div>
+    <div class="col-12">
+        <a href="/dashboard/create/"><button type="button" class="btn btn-primary">Add Bookmark</button></a> 
+        <a href="/dashboard/create-tag/"><button type="button" class="btn btn-primary">Create Tag</button></a>
+    </div>
+
+{{#if bookmarks.length}}
+    </div>
+</div>
+{{#each bookmarks as |bookmark|}}
+<div class="card">
+    <div class="card">
+        <header class="card-header p-3 mb-2 bg-secondary text-white">
+            <div class="column">
+                <p class="text-white"></p>
+                <p class="text-white fs-5">{{bookmark.title}} </p>
+            </div>
+        </header>
+
+    <div class="card-content">
+        <div class="content p-3">
+            {{bookmark.URL}}
+        </div>
+            <div class="d-flex justify-content-end p-2">
+                <h6>Tags: {{> tag bookmark.tags}} </h6>
+            </div>
+        </div>
+    </div>
+            <div class="d-flex justify-content-start m-3">
+                <a href="/dashboard/edit/{{bookmark.id}}"><button class="btn btn-primary">Edit bookmark</button></a>
+            </div>
+        </div>
+{{/each}}
+
+{{else}}
+<h6 class="fs-4 fst-italic p-4 text-center">You do not have any bookmarks.</h6>
+
+{{/if}}
+
+{{else}}
+<h6 class="fs-4 fst-italic p-4 text-center">Please log in to access.</h6>
+<div class="d-flex justify-content-center">
+    <a href="/" role="button" class="btn btn-primary">Log in</a>
+</div>
+
+{{/if}}
