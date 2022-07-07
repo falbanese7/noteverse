@@ -5,6 +5,13 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const passport = require('passport');
+const initializePassport = require('./utils/passport-config');
+initializePassport(
+  passport,
+  (username) => users.find((user) => user.username === username),
+  (id) => users.find((user) => user.id === id)
+);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -29,6 +36,8 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(routes);
 
