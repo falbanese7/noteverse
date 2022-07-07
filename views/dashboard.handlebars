@@ -23,7 +23,7 @@
 
     <div class="card-content">
         <div class="content p-3">
-            {{bookmark.URL}}
+           <a href="{{bookmark.URL}}" target="_blank">{{bookmark.URL}}</a> 
         </div>
             <div class="d-flex justify-content-end p-2">
                 <h6>Tags: {{> tag bookmark.tags}} </h6>
