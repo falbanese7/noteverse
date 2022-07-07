@@ -2,7 +2,7 @@ const newFormHandler = async (event) => {
   event.preventDefault();
 
   const title = document.querySelector('input[name="bookmark-title"]').value;
-  const URL = document.querySelector('textarea[name="URL"]').value;
+  const URL = document.querySelector('input[name="URL"]').value;
 
   const response = await fetch('/api/bookmark', {
     method: 'POST',
