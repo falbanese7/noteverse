@@ -12,7 +12,7 @@ creating an account, the user can access bookmarks from any web browser so there
 This website follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
 ![Sitestash Login](./screenshots/Screen%20Shot%202022-07-07%20at%2011.21.04%20AM.png)
-![Sitestash Dashboard]()
+![Sitestash Dashboard](./screenshots/Screen%20Shot%202022-07-07%20at%2011.36.21%20AM.png)
 ![Sitestash Add Bookmark](./screenshots/Screen%20Shot%202022-07-07%20at%2011.21.54%20AM.png)
 
 Live Site: https://sitestash.herokuapp.com/
@@ -47,13 +47,9 @@ No tests are included.
 
 ## Questions?
 
-Developed by: Francesco Albanese
+Developed by: Francesco Albanese, Spencer Brown, Stephen Gilmore
 
-Email me at: falbanese96@gmail.com
-
-GitHub Profile: https://github.com/falbanese7
-
-GitHub Repository: https://github.com/falbanese7/Tech-Blog-by-Francesco-Albanese
+GitHub Repository: https://github.com/falbanese7/sitestash
 
 ## License
 
