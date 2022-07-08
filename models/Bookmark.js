@@ -18,13 +18,16 @@ Bookmark.init(
     URL: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validate: {
+        isUrl: true,
+      },
     },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'user',
-        key: 'id'
+        key: 'id',
       },
     },
   },
@@ -32,7 +35,7 @@ Bookmark.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'bookmark'
+    modelName: 'bookmark',
   }
 );
 
